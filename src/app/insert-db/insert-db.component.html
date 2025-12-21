@@ -1,0 +1,22 @@
+<p><h1>InsertDetails</h1>
+<div>
+    <div>
+        <label>Name:
+            <input type="text" [(ngModel)]="userData.Name" placeholder="Name" id="uname" name="uname" required #uname="ngModel"/>
+            <span *ngIf="uname" class="text-danger">
+                
+            </span>
+        </label>
+        <br><br>
+         <label>Age:
+            <input type="number" [(ngModel)]="userData.Age" placeholder="Age" [min]="18" [max]="65"/>
+         </label><br>
+         <br>
+
+          <label>Mark:
+            <input type="Mark" [(ngModel)]="userData.Mark" placeholder="Mark" />
+          </label>
+        <br><br>
+    </div>
+    <button (click)="adduserdata()"> SAVE</button>
+</div>

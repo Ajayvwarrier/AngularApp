@@ -1,0 +1,13 @@
+/* Optional custom styles */
+
+.custom-table {
+  margin-top: 20px;
+}
+
+.custom-table th {
+  text-align: center;
+}
+
+.custom-table td {
+  vertical-align: middle;
+}

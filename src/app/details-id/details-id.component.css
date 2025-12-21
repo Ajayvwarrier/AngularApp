@@ -1,0 +1,26 @@
+/* heading */
+.heading{
+    color: black;
+    background-color: rgb(155, 199, 132);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 15px;
+}
+/* detailsshow */
+.display{
+    color: black;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 15px;
+}
+/* details */
+.ed1{
+ color: black;
+ display: flex;
+ justify-self:self-start ;
+ padding: 5px;
+ margin-top: 15px;
+}

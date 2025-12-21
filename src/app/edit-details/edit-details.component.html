@@ -1,0 +1,16 @@
+<h1> Edit Details</h1>
+<div>
+    <div>
+        <label>Name:
+            <input [(ngModel)]="productData.Name" placeholder="Name"/>
+        </label><br>
+        <label>Age:
+             <input [(ngModel)]="productData.Age" placeholder="Age"/>
+        </label><br>
+         <label>Mark:
+             <input [(ngModel)]="productData.Mark" placeholder="Mark"/>
+        </label><br>
+    </div>
+    <button (click)="updateProdect()"> Update</button>
+    <button routerLink="/Details All/"> Goto Home   </button>
+</div>

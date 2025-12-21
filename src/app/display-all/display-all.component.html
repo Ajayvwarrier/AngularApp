@@ -1,0 +1,39 @@
+<!-- Title -->
+<h1 class="title">All Student Details</h1>
+<button routerLink="/Db Insert/" class="btn"> InsertDetails </button>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mark</th>
+        <th colspan="0">Action</th>
+        <th colspan="1">Details</th>
+        <th colspan="2">Edit</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of GetData">
+        <td>{{ p.Name }}</td>
+        <td>{{ p.Age }}</td>
+        <td>{{ p.Mark }}</td>
+
+        <td>
+          <button
+            class="Delete"
+            title="Delete Details"
+            (click)="delete(p.Id)">Delete</button>
+        </td>
+
+        <td>
+          <button [routerLink]="['/Details', p.Id]">Details</button>
+        </td>
+        <td>
+          <button [routerLink]="['/editdetails', p.Id]">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

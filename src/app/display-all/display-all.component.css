@@ -1,0 +1,21 @@
+/* Title */
+.title{
+    color: black;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 15px;
+}
+/*Body color*/
+.table{
+    background-color: darkkhaki;
+    padding: 25px;
+    
+}
+/* insertbutton */
+.btn{
+    color: black;
+    display: flex;
+    justify-content: flex-end;
+} 
