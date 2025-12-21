@@ -1,4 +1,4 @@
-<h2 class="heading">Employee Details</h2>
+<h2 class="heading">Student Details</h2>
 
 <div *ngIf="student">
   <h3 class="display">{{ student.Name | uppercase }} </h3>
@@ -6,9 +6,9 @@
   <div class="ed1"><span >Age: </span>{{ student.Age }}</div>
   <div class="ed2"><span>Mark: </span>{{ student.Mark }}</div>
 
-  <div>
+  <!-- <div>
     <button [routerLink]="['', student.Id]">
       Edit
     </button>
-  </div>
+  </div> -->
 </div>

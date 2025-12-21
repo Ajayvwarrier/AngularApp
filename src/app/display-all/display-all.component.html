@@ -1,6 +1,25 @@
-<!-- Title -->
-<h1 class="title">All Student Details</h1>
-<button routerLink="/Db Insert/" class="btn"> InsertDetails </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+</head>
+
+<body>
+  <h1 class="title">All Student Details</h1>
+
+
+<!-- Insert Button -->
+<button routerLink="/Db Insert/" class="btn">
+  Insert Details
+</button>
+
+<br /><br />
+</body>
+</html>
+<br><br>
+
+<!-- Table Container -->
 <div class="container">
   <table class="table">
     <thead>
@@ -8,9 +27,9 @@
         <th>Name</th>
         <th>Age</th>
         <th>Mark</th>
-        <th colspan="0">Action</th>
-        <th colspan="1">Details</th>
-        <th colspan="2">Edit</th>
+        <th>Action</th>
+        <th>Details</th>
+        <th>Edit</th>
       </tr>
     </thead>
 
@@ -24,14 +43,21 @@
           <button
             class="Delete"
             title="Delete Details"
-            (click)="delete(p.Id)">Delete</button>
+            (click)="delete(p.Id)">
+            Delete
+          </button>
         </td>
 
         <td>
-          <button [routerLink]="['/Details', p.Id]">Details</button>
+          <button [routerLink]="['/Details', p.Id]">
+            Details
+          </button>
         </td>
+
         <td>
-          <button [routerLink]="['/editdetails', p.Id]">Edit</button>
+          <button [routerLink]="['/editdetails', p.Id]">
+            Edit
+          </button>
         </td>
       </tr>
     </tbody>

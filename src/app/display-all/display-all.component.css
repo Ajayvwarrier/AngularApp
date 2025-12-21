@@ -1,21 +1,39 @@
-/* Title */
-.title{
+/* Remove default page margin */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+.body{
+    background-color: burlywood;
+}
+
+
+.title {
+    width: 100%;              /* FULL screen width */
     color: black;
     background-color: cornsilk;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    margin-top: 15px;
+    text-align: center;
+    padding: 10px 0;
+    margin: 15px 0 0 0;
 }
-/*Body color*/
-.table{
+
+
+
+
+/* =========================
+   Table / Body Color
+   ========================= */
+.table {
+    width: 100%;
     background-color: darkkhaki;
-    padding: 25px;
-    
+
 }
-/* insertbutton */
-.btn{
-    color: black;
-    display: flex;
-    justify-content: flex-end;
-} 
+
+
+/* =========================
+   Insert Button
+   ========================= */
+.btn {
+    float: right;
+    margin-right: 20px;
+}
