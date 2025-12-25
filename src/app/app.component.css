@@ -1,13 +1,6 @@
-/* Optional custom styles */
-
-.custom-table {
-  margin-top: 20px;
+.page-bg {
+  min-height: 100vh;
+  background-color: rgb(132, 110, 81); /* BACKGROUND BEHIND table & heading */
+  padding: 20px;
 }
 
-.custom-table th {
-  text-align: center;
-}
-
-.custom-table td {
-  vertical-align: middle;
-}

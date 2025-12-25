@@ -20,4 +20,5 @@ export class DetailsIdComponent implements OnInit {
       (data: WebApiTab) => this.student = {...data} 
     );
   }
+  
 }

@@ -1,39 +1,66 @@
 /* Remove default page margin */
 html, body {
-    margin: 0;
-    padding: 0;
-}
-.body{
-    background-color: burlywood;
+  margin: 0;
+  padding: 0;
 }
 
+/* ===== Title Section (Full width background) ===== */
+.title-wrapper {
+  width: 100%;
+  background-color: cornsilk;   /* full strip */
+  padding: 15px 0;
+  margin-top: 15px;
 
-.title {
-    width: 100%;              /* FULL screen width */
-    color: black;
-    background-color: cornsilk;
-    text-align: center;
-    padding: 10px 0;
-    margin: 15px 0 0 0;
+  display: flex;
+  flex-direction: column;      
+  align-items: center;         
 }
 
+/* Heading text */
+.title,
+.heading {
+  color: black;
+  margin: 0;
+  text-align: center;
+}
 
+/* Button spacing inside title */
+.insert-btn {
+  margin-top: 10px;
+}
 
-
-/* =========================
-   Table / Body Color
-   ========================= */
+/* ===== Table ===== */
 .table {
-    width: 100%;
-    background-color: darkkhaki;
+  width: 100%;
+  background-color: darkkhaki;
+  border-collapse: collapse;   /* gap remove */
+  font-size: 14px;             /* 🔽 text size */
+}
 
+/* Table header & cells */
+.table th,
+.table td {
+  padding: 6px 10px;           /* 🔽 row height */
+  text-align: center;
+}
+
+/* Header row */
+.table th {
+  font-weight: bold;
+}
+
+/* Optional: row hover */
+.table tr:hover {
+  background-color: #cfc98a;
 }
 
 
-/* =========================
-   Insert Button
-   ========================= */
+/* ===== Button ===== */
 .btn {
-    float: right;
-    margin-right: 20px;
+  border-radius: 5px;
+  background-color: #f4511e;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 12px 20px;
+  width: 200px;
 }

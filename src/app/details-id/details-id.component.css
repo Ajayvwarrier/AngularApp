@@ -1,26 +1,43 @@
-/* heading */
+/* Heading */
 .heading{
-    color: black;
-    background-color: rgb(155, 199, 132);
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    margin-top: 15px;
+  color: black;
+  background-color: rgb(155, 199, 132);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 15px;
 }
-/* detailsshow */
+
+
+/* Name display */
 .display{
-    color: black;
-    background-color: cornsilk;
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    margin-top: 15px;
+  color: black;
+  background-color: cornsilk;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin-top: 10px;
+  width: 220px;
 }
-/* details */
-.ed1{
- color: black;
- display: flex;
- justify-self:self-start ;
- padding: 5px;
- margin-top: 15px;
+
+/* Wrapper */
+.details-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+/* Age & Mark rows */
+.detail-row{
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  padding: 8px;
+  background-color: cornsilk;   /* ✅ added */
+}
+
+.detail-row span:first-child{
+  font-weight: bold;
 }
