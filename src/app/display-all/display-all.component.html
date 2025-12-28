@@ -5,63 +5,144 @@
   <title>Student Details</title>
 </head>
 
+<div class="page-container">
+  <!-- Header Section -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">
+        <i class="icon-title">👨‍🎓</i>
+        Student Management System
+      </h1>
+      <p class="page-subtitle">View and manage all student records</p>
+    </div>
+  </header>
 
-  <div class="title-wrapper">
-  <h1 class="title">All Student Details</h1>
+  <!-- Action Bar -->
+  <div class="action-bar">
+    <button 
+      routerLink="/Db Insert/" 
+      class="btn btn-primary btn-insert">
+      <i class="btn-icon">+</i>
+      Add New Student
+    </button>
+    
+    <div class="stats-badge">
+      <span class="stat-count">{{ GetData?.length || 0 }}</span>
+      <span class="stat-label">Total Students</span>
+    </div>
   </div>
-  <br>
 
+  <!-- Table Container -->
+  <div class="table-container">
+    <div class="table-card">
+      <div class="table-header">
+        <h2 class="table-title">
+          <i class="table-icon">📋</i>
+          Student Records
+        </h2>
+      </div>
 
-<!-- Insert Button -->
-<button routerLink="/Db Insert/" class="btn" style="vertical-align:middle">
- Insert Details 
-</button>
+      <div class="table-responsive">
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th class="th-name">
+                <i class="header-icon">👤</i>
+                Name
+              </th>
+              <th class="th-age">
+                <i class="header-icon">🎂</i>
+                Age
+              </th>
+              <th class="th-mark">
+                <i class="header-icon">📊</i>
+                Mark
+              </th>
+              <th class="th-actions">
+                <i class="header-icon">⚡</i>
+                Actions
+              </th>
+            </tr>
+          </thead>
 
-<br /><br />
-
-<br><br>
-
-<!-- Table Container -->
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Mark</th>
-        <th>Action</th>
-        <th>Details</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let p of GetData">
-        <td>{{ p.Name }}</td>
-        <td>{{ p.Age }}</td>
-        <td>{{ p.Mark }}</td>
-
-        <td>
-          <button
-            class="Delete"
-            title="Delete Details"
-            (click)="delete(p.Id)">
-            Delete
-          </button>
-        </td>
-
-        <td>
-          <button [routerLink]="['/Details', p.Id]">
-            Details
-          </button>
-        </td>
-
-        <td>
-          <button [routerLink]="['/editdetails', p.Id]">
-            Edit
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <tbody>
+            <tr *ngFor="let p of GetData" class="table-row">
+              <td class="td-name">
+                <div class="student-info">
+                  <div class="student-avatar">
+                    {{ p.Name?.charAt(0) || 'S' }}
+                  </div>
+                  <div class="student-details">
+                    <span class="student-name">{{ p.Name }}</span>
+                    <span class="student-id">ID: {{ p.Id }}</span>
+                  </div>
+                </div>
+              </td>
+              
+              <td class="td-age">
+                <span class="age-badge">{{ p.Age }}</span>
+                <span class="age-label">years</span>
+              </td>
+              
+              <td class="td-mark">
+                <div class="mark-container">
+                  <div class="mark-display">{{ p.Mark }}</div>
+                  <div class="mark-progress">
+                    <div class="progress-bar" [style.width.%]="(p.Mark / 100) * 100"></div>
+                  </div>
+                </div>
+              </td>
+              
+              <td class="td-actions">
+                <div class="action-buttons">
+                  <button 
+                    class="btn-action btn-view"
+                    [routerLink]="['/Details', p.Id]"
+                    title="View Details">
+                    <i class="action-icon">👁️</i>
+                    <span class="btn-text">View</span>
+                  </button>
+                  
+                  <button 
+                    class="btn-action btn-edit"
+                    [routerLink]="['/editdetails', p.Id]"
+                    title="Edit Student">
+                    <i class="action-icon">✏️</i>
+                    <span class="btn-text">Edit</span>
+                  </button>
+                  
+                  <button 
+                    class="btn-action btn-delete"
+                    (click)="delete(p.Id)"
+                    title="Delete Student">
+                    <i class="action-icon">🗑️</i>
+                    <span class="btn-text">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Empty State -->
+            <tr *ngIf="!GetData || GetData.length === 0" class="empty-state">
+              <td colspan="4">
+                <div class="empty-message">
+                  <i class="empty-icon">📭</i>
+                  <h3>No Students Found</h3>
+                  <p>Click "Add New Student" to create your first record</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Table Footer -->
+      <div class="table-footer">
+        <div class="footer-info">
+          <i class="footer-icon">ℹ️</i>
+          Click on action buttons to manage student records
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
