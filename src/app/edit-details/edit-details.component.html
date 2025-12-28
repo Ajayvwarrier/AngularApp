@@ -1,20 +1,248 @@
-<h1 class="heading"> Edit Details</h1>
-<div class="edit-container">
-  <div class="field">
-    <label>Name:</label>
-    <input [(ngModel)]="productData.Name">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student Details</title>
+</head>
+
+<div class="edit-page" *ngIf="productData">
+  
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-background">
+      <div class="header-content">
+        <div class="breadcrumb-nav">
+          <a routerLink="/Details All/" class="breadcrumb-link">
+            <i class="breadcrumb-icon">🏠</i>
+            Dashboard
+          </a>
+          <span class="breadcrumb-separator">/</span>
+          <a [routerLink]="['/Details', productData.Id]" class="breadcrumb-link">
+            <i class="breadcrumb-icon">👤</i>
+            Student Profile
+          </a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">
+            <i class="breadcrumb-icon">✏️</i>
+            Edit Details
+          </span>
+        </div>
+        
+        <div class="header-title-section">
+          <div class="title-with-avatar">
+            <div class="edit-avatar">
+              {{ productData.Name?.charAt(0) || 'S' }}
+            </div>
+            <div>
+              <h1 class="page-title">Edit Student Details</h1>
+              <p class="page-subtitle">Update information for {{ productData.Name || 'Student' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <label>Age:</label>
-    <input [(ngModel)]="productData.Age">
+  <!-- Main Edit Form -->
+  <div class="main-content">
+    <div class="form-container">
+      <div class="form-card">
+        
+        <!-- Form Header -->
+        <div class="form-header">
+          <div class="form-header-icon">
+            <i class="header-icon">📝</i>
+          </div>
+          <div class="form-header-text">
+            <h2 class="form-title">Student Information</h2>
+            <p class="form-subtitle">Modify the details below and save changes</p>
+          </div>
+          <div class="student-id-badge">
+            <span class="id-label">ID:</span>
+            <span class="id-value">{{ productData.Id }}</span>
+          </div>
+        </div>
+
+        <!-- Form Body -->
+        <form class="edit-form" (ngSubmit)="updateProdect()" #editForm="ngForm">
+          <div class="form-body">
+            
+            <!-- Name Field -->
+            <div class="form-group">
+              <div class="form-label-section">
+                <label for="studentName" class="form-label">
+                  <i class="field-icon">👤</i>
+                  Full Name
+                </label>
+                <div class="character-count">
+                  {{ productData.Name?.length || 0 }}/50
+                </div>
+              </div>
+              <div class="input-with-icon">
+                <i class="input-icon">📛</i>
+                <input 
+                  id="studentName"
+                  type="text" 
+                  [(ngModel)]="productData.Name" 
+                  name="Name"
+                  required
+                  maxlength="50"
+                  placeholder="Enter student's full name"
+                  class="form-input"
+                  [ngClass]="{'has-value': productData.Name}"
+                  #nameInput="ngModel">
+              </div>
+              <div class="input-hint">
+                Enter the student's full legal name
+              </div>
+              <div class="validation-message" *ngIf="nameInput.invalid && nameInput.touched">
+                <i class="error-icon">⚠️</i>
+                Name is required
+              </div>
+            </div>
+
+            <!-- Age Field -->
+            <div class="form-group">
+              <div class="form-label-section">
+                <label for="studentAge" class="form-label">
+                  <i class="field-icon">🎂</i>
+                  Age
+                </label>
+                <div class="age-indicator">
+                  <span class="age-current">{{ productData.Age || 0 }}</span>
+                  <span class="age-unit">years</span>
+                </div>
+              </div>
+              <div class="input-with-icon">
+                <i class="input-icon">🔢</i>
+                <input 
+                  id="studentAge"
+                  type="number" 
+                  [(ngModel)]="productData.Age" 
+                  name="Age"
+                  required
+                  min="5"
+                  max="99"
+                  placeholder="Enter age"
+                  class="form-input"
+                  [ngClass]="{'has-value': productData.Age}"
+                  #ageInput="ngModel">
+              </div>
+              <div class="range-slider">
+                <input 
+                  type="range" 
+                  [(ngModel)]="productData.Age" 
+                  name="AgeSlider"
+                  min="5" 
+                  max="99"
+                  class="age-slider">
+                <div class="slider-labels">
+                  <span>5</span>
+                  <span>25</span>
+                  <span>50</span>
+                  <span>75</span>
+                  <span>99</span>
+                </div>
+              </div>
+              <div class="validation-message" *ngIf="ageInput.invalid && ageInput.touched">
+                <i class="error-icon">⚠️</i>
+                Age must be between 5 and 99
+              </div>
+            </div>
+
+         <div>
+              <button 
+                type="submit" 
+                [disabled]="editForm.invalid" 
+                class="btn btn-primary"
+                [ngClass]="{'disabled': editForm.invalid}">
+                <i class="btn-icon">💾</i>
+                Save Changes
+                <span class="btn-subtext">Update student record</span>
+              </button>
+            </div>
+            
+            <div class="form-status" *ngIf="editForm.dirty">
+              <i class="status-icon">💡</i>
+              <span class="status-text">You have unsaved changes</span>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- Side Information -->
+      <div class="side-panel">
+        <div class="info-card">
+          <div class="info-card-header">
+            <i class="info-icon">ℹ️</i>
+            <h3 class="info-card-title">Editing Guidelines</h3>
+          </div>
+          <div class="info-card-body">
+            <ul class="guidelines-list">
+              <li class="guideline-item">
+                <i class="guideline-icon">✅</i>
+                <div>
+                  <strong>Name:</strong> Use full legal name
+                </div>
+              </li>
+              <li class="guideline-item">
+                <i class="guideline-icon">✅</i>
+                <div>
+                  <strong>Age:</strong> Must be between 5-99 years
+                </div>
+              </li>
+              <li class="guideline-item">
+                <i class="guideline-icon">✅</i>
+                <div>
+                  <strong>Mark:</strong> Range from 0-100 (percentage)
+                </div>
+              </li>
+              <li class="guideline-item">
+                <i class="guideline-icon">⚠️</i>
+                <div>
+                  <strong>Note:</strong> Changes are saved immediately
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <i class="info-icon">📈</i>
+            <h3 class="info-card-title">Performance Scale</h3>
+          </div>
+          <div class="info-card-body">
+            <div class="performance-scale">
+              <div class="scale-item excellent">
+                <span class="scale-label">Excellent</span>
+                <span class="scale-range">80-100</span>
+              </div>
+              <div class="scale-item good">
+                <span class="scale-label">Good</span>
+                <span class="scale-range">60-79</span>
+              </div>
+              <div class="scale-item average">
+                <span class="scale-label">Average</span>
+                <span class="scale-range">40-59</span>
+              </div>
+              <div class="scale-item poor">
+                <span class="scale-label">Needs Improvement</span>
+                <span class="scale-range">0-39</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="field">
-    <label>Mark:</label>
-    <input [(ngModel)]="productData.Mark">
-  </div>
+</div>
 
-  <button (click)="updateProdect()">Update</button>
-  <button routerLink="/Details All/">Goto Home</button>
+<!-- Loading State -->
+<div *ngIf="!productData" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading student data...</div>
 </div>

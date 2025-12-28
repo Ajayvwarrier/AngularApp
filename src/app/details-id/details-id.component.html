@@ -1,19 +1,107 @@
-<h2 class="heading">Student Details</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Profile</title>
+</head>
 
-<div class="details-wrapper" *ngIf="student">
-
-  <h3 class="display">{{ student.Name | uppercase }}</h3>
-
-  <div class="detail-row">
-    <span>Age:</span>
-    <span>{{ student.Age }}</span>
+<div class="page-container" *ngIf="student">
+  
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <div class="profile-cover">
+      <div class="cover-gradient"></div>
+      <div class="header-content">
+        <button 
+          routerLink="/Details All/" 
+          class="back-btn">
+          <i class="back-icon">←</i>
+          Back to Dashboard
+        </button>
+        
+        <div class="profile-identity">
+          <div class="avatar-large">
+            {{ student.Name?.charAt(0) || 'S' }}
+          </div>
+          <div class="identity-info">
+            <h1 class="student-name">{{ student.Name | uppercase }}</h1>
+            <div class="student-id">Student ID: {{ student.Id || 'N/A' }}</div>
+            <div class="status-badge active">
+              <span class="status-dot"></span>
+              Active Student
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="detail-row">
-    <span>Mark:</span>
-    <span>{{ student.Mark }}</span>
-  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-grid">
+      
+      <!-- Personal Information Card -->
+      <div class="card personal-info">
+        <div class="card-header">
+          <i class="card-icon">👤</i>
+          <h2 class="card-title">Personal Information</h2>
+        </div>
+        
+        <div class="card-body">
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <i class="info-icon">🎂</i>
+                Age
+              </div>
+              <div class="info-value">
+                <span class="value-large">{{ student.Age }}</span>
+                <span class="value-unit">years</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">
+                <i class="info-icon">📊</i>
+                Academic Score
+              </div>
+              <div class="info-value">
+                <span class="value-large">{{ student.Mark }}</span>
+                <span class="value-unit">/ 100</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Mark Progress -->
+          <div class="progress-section">
+            <div class="progress-header">
+              <span>Performance Score</span>
+              <span class="progress-percent">{{ (student.Mark / 100) * 100 }}%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div 
+                class="progress-fill" 
+                [style.width.%]="(student.Mark / 100) * 100"
+                [ngClass]="{
+                  'excellent': student.Mark >= 80,
+                  'good': student.Mark >= 60 && student.Mark < 80,
+                  'average': student.Mark >= 40 && student.Mark < 60,
+                  'poor': student.Mark < 40
+                }">
+              </div>
+            </div>
+            <div class="progress-labels">
+              <span>0</span>
+              <span>50</span>
+              <span>100</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <button routerLink="/Details All/">Goto Home</button>
-
+    
+<!-- Loading State -->
+<div *ngIf="!student" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading student details...</div>
 </div>
