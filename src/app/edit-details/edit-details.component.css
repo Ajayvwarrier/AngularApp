@@ -12,9 +12,39 @@
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
+.header-content {
+  position: relative;
+  padding: 40px 50px 60px;
+  color: white;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 30px;
+}
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+.back-icon {
+  font-size: 1.2rem;
+}
 
 .header-content {
-  padding: 30px 40px;
+  padding: 40px 50px;
   color: white;
   position: relative;
 }
@@ -99,15 +129,15 @@
 .page-title {
   margin: 0;
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 800;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .page-subtitle {
-  margin: 5px 0 0 0;
+  margin: 6px 0 0 0;
   opacity: 0.9;
-  font-size: 1.1rem;
-  font-weight: 300;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .student-id-badge {

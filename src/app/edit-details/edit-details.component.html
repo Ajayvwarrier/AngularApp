@@ -11,6 +11,10 @@
   <div class="page-header">
     <div class="header-background">
       <div class="header-content">
+        <button 
+          routerLink="/Details All/" 
+          class="back-btn"><i class="back-icon">←</i>Back to Dashboard </button>
+      <div class="header-content">
         <div class="breadcrumb-nav">
           <a routerLink="/Details All/" class="breadcrumb-link">
             <i class="breadcrumb-icon">🏠</i>
@@ -25,8 +29,9 @@
           <span class="breadcrumb-current">
             <i class="breadcrumb-icon">✏️</i>
             Edit Details
-          </span>
+          </span> 
         </div>
+        
         
         <div class="header-title-section">
           <div class="title-with-avatar">
@@ -122,7 +127,7 @@
                   name="Age"
                   required
                   min="5"
-                  max="99"
+                  max="50"
                   placeholder="Enter age"
                   class="form-input"
                   [ngClass]="{'has-value': productData.Age}"
@@ -134,19 +139,17 @@
                   [(ngModel)]="productData.Age" 
                   name="AgeSlider"
                   min="5" 
-                  max="99"
+                  max="50"
                   class="age-slider">
                 <div class="slider-labels">
                   <span>5</span>
                   <span>25</span>
                   <span>50</span>
-                  <span>75</span>
-                  <span>99</span>
                 </div>
               </div>
               <div class="validation-message" *ngIf="ageInput.invalid && ageInput.touched">
                 <i class="error-icon">⚠️</i>
-                Age must be between 5 and 99
+                Age must be between 5 and 50
               </div>
             </div>
 
@@ -189,13 +192,13 @@
               <li class="guideline-item">
                 <i class="guideline-icon">✅</i>
                 <div>
-                  <strong>Age:</strong> Must be between 5-99 years
+                  <strong>Age:</strong> Must be between 5-50 years
                 </div>
               </li>
               <li class="guideline-item">
                 <i class="guideline-icon">✅</i>
                 <div>
-                  <strong>Mark:</strong> Range from 0-100 (percentage)
+                  <strong>Mark:</strong> Range from 0-1600 (percentage)
                 </div>
               </li>
               <li class="guideline-item">
@@ -217,19 +220,19 @@
             <div class="performance-scale">
               <div class="scale-item excellent">
                 <span class="scale-label">Excellent</span>
-                <span class="scale-range">80-100</span>
+                <span class="scale-range">800-1600</span>
               </div>
               <div class="scale-item good">
                 <span class="scale-label">Good</span>
-                <span class="scale-range">60-79</span>
+                <span class="scale-range">600-790</span>
               </div>
               <div class="scale-item average">
                 <span class="scale-label">Average</span>
-                <span class="scale-range">40-59</span>
+                <span class="scale-range">400-590</span>
               </div>
               <div class="scale-item poor">
                 <span class="scale-label">Needs Improvement</span>
-                <span class="scale-range">0-39</span>
+                <span class="scale-range">0-390</span>
               </div>
             </div>
           </div>

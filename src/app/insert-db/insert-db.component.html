@@ -1,22 +1,462 @@
-<p><h1>InsertDetails</h1>
-<div>
-    <div>
-        <label>Name:
-            <input type="text" [(ngModel)]="userData.Name" placeholder="Name" id="uname" name="uname" required #uname="ngModel"/>
-            <span *ngIf="uname" class="text-danger">
-                
-            </span>
-        </label>
-        <br><br>
-         <label>Age:
-            <input type="number" [(ngModel)]="userData.Age" placeholder="Age" [min]="18" [max]="65"/>
-         </label><br>
-         <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Student</title>
+</head>
 
-          <label>Mark:
-            <input type="Mark" [(ngModel)]="userData.Mark" placeholder="Mark" />
-          </label>
-        <br><br>
+<div class="insert-page">
+  
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-background">
+      <div class="header-content">
+        <button 
+          routerLink="/Details All/" 
+          class="back-button">
+          <i class="back-icon">←</i>
+          Back to Students
+        </button>
+        
+        <div class="header-title-section">
+          <div class="header-icon-wrapper">
+            <i class="header-main-icon">➕</i>
+          </div>
+          <div class="header-text">
+            <h1 class="page-title">Add New Student</h1>
+            <p class="page-subtitle">Create a new student record in the system</p>
+          </div>
+          <div class="header-steps">
+            <div class="step active">
+              <span class="step-number">1</span>
+              <span class="step-label">Details</span>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <span class="step-label">Review</span>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <span class="step-label">Confirm</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button (click)="adduserdata()"> SAVE</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="form-container">
+      
+      <!-- Form Card -->
+      <div class="form-card">
+        <form class="insert-form" (ngSubmit)="adduserdata()" #insertForm="ngForm">
+          
+          <!-- Form Header -->
+          <div class="form-header">
+            <div class="form-header-content">
+              <i class="form-icon">📝</i>
+              <div>
+                <h2 class="form-title">Student Information</h2>
+                <p class="form-subtitle">Fill in all required fields to create a new student record</p>
+              </div>
+            </div>
+            <div class="form-status">
+              <div class="status-indicator draft">
+                <span class="status-dot"></span>
+                <span class="status-text">Draft</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Body -->
+          <div class="form-body">
+            
+            <!-- Name Field -->
+            <div class="form-group">
+              <div class="form-label-wrapper">
+                <label for="studentName" class="form-label">
+                  <span class="label-text">Full Name</span>
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="character-counter" [ngClass]="">
+                  {{ userData.Name?.length || 0 }}/50
+                </div>
+              </div>
+              
+              <div class="input-container">
+                <i class="input-icon">👤</i>
+                <input 
+                  id="studentName"
+                  type="text" 
+                  [(ngModel)]="userData.Name" 
+                  name="Name"
+                  required
+                  maxlength="50"
+                  placeholder="Enter student's full name"
+                  class="form-input"
+                  [ngClass]="{
+                    'has-value': userData.Name,
+                    'error': uname.invalid && uname.touched,
+                    'success': uname.valid && uname.touched
+                  }"
+                  #uname="ngModel">
+                <div class="input-actions">
+                  <button type="button" class="input-action-btn" *ngIf="userData.Name">
+                    <i class="clear-icon">✕</i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="input-hints">
+                <div class="hint-item" >
+                  <i class="hint-icon"></i>
+                  <span>At least 3 characters</span>
+                </div>
+                <div class="hint-item" [ngClass]="">
+                  <i class="hint-icon"></i>
+                  <span>Include first and last name</span>
+                </div>
+              </div>
+              
+              <div class="validation-message" *ngIf="uname.invalid && uname.touched">
+                <i class="error-icon">⚠️</i>
+                <span>Full name is required</span>
+              </div>
+            </div>
+
+            <!-- Age Field -->
+            <div class="form-group">
+              <div class="form-label-wrapper">
+                <label for="studentAge" class="form-label">
+                  <span class="label-text">Age</span>
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="age-display">
+                  <span class="age-value">{{ userData.Age || '--' }}</span>
+                  <span class="age-unit">years</span>
+                </div>
+              </div>
+              
+              <div class="input-container">
+                <i class="input-icon">🎂</i>
+                <input 
+                  id="studentAge"
+                  type="number" 
+                  [(ngModel)]="userData.Age" 
+                  name="Age"
+                  required
+                  min="5"
+                  max="50"
+                  placeholder="Enter student's age (5-50)"
+                  class="form-input"
+                  [ngClass]="{
+                    'has-value': userData.Age,
+                    'error': userData.Age && (userData.Age < 5 || userData.Age > 50),
+                    'success': userData.Age && userData.Age >= 5 && userData.Age <= 50
+                  }"
+                  #ageInput="ngModel">
+                <div class="input-actions">
+                  <button type="button" class="input-action-btn" (click)="('Age')" *ngIf="userData.Age">
+                    <i class="clear-icon">✕</i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Age Range Slider -->
+              <div class="range-container">
+                <div class="range-slider-wrapper">
+                  <input 
+                    type="range" 
+                    [(ngModel)]="userData.Age" 
+                    name="AgeSlider"
+                    min="5" 
+                    max="50" 
+                    class="range-slider"
+                    [ngClass]="{
+                      'excellent': userData.Age >= 18 && userData.Age <= 25,
+                      'good': (userData.Age >= 15 && userData.Age < 18) || (userData.Age > 25 && userData.Age <= 30),
+                      'average': (userData.Age >= 10 && userData.Age < 15) || (userData.Age > 30 && userData.Age <= 40),
+                      'poor': userData.Age < 10 || userData.Age > 40
+                    }">
+                  <div class="range-labels">
+                    <span>5</span>
+                    <span class="highlight">18-25</span>
+                    <span>50</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="age-info">
+                <div class="info-item" [ngClass]="{'active': userData.Age >= 18}">
+                  <i class="info-icon">{{ userData.Age >= 18 ? '🎓' : '👶' }}</i>
+                  <span>{{ userData.Age >= 18 ? 'Adult student' : 'Minor student' }}</span>
+                </div>
+              </div>
+              
+              <div class="validation-message" *ngIf="userData.Age && (userData.Age < 5 || userData.Age > 99)">
+                <i class="error-icon">⚠️</i>
+                <span>Age must be between 5 and 50</span>
+              </div>
+            </div>
+
+            <!-- Mark Field -->
+            <div class="form-group">
+              <div class="form-label-wrapper">
+                <label for="studentMark" class="form-label">
+                  <span class="label-text">Academic Mark</span>
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="mark-display">
+                  <span class="mark-value">{{ userData.Mark || '--' }}</span>
+                  <span class="mark-unit">/1600</span>
+                  <div class="mark-grade" *ngIf="userData.Mark">
+                    Grade: {{ (userData.Mark) }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="input-container">
+                <i class="input-icon">📊</i>
+                <input 
+                  id="studentMark"
+                  type="number" 
+                  [(ngModel)]="userData.Mark" 
+                  name="Mark"
+                  required
+                  min="0"
+                  max="1600"
+                  placeholder="Enter academic mark (0-1600)"
+                  class="form-input"
+                  [ngClass]="{
+                    'has-value': userData.Mark,
+                    'excellent': userData.Mark >= 800,
+                    'good': userData.Mark >= 600 && userData.Mark < 800,
+                    'average': userData.Mark >= 400 && userData.Mark < 600,
+                    'poor': userData.Mark < 400 && userData.Mark !== null,
+                    'error': userData.Mark && (userData.Mark < 0 || userData.Mark > 1000)
+                  }"
+                  #markInput="ngModel">
+                <div class="input-actions">
+                  <button type="button" class="input-action-btn" (click)="('Mark')" *ngIf="userData.Mark">
+                    <i class="clear-icon">✕</i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Mark Progress Visualization -->
+              <div class="mark-visualization">
+                <div class="visualization-header">
+                  <span class="visualization-label">Performance Level</span>
+                  <span class="visualization-value" *ngIf="userData.Mark">
+                    {{ userData.Mark }}%
+                    <span class="visualization-grade">{{ (userData.Mark) }}</span>
+                  </span>
+                </div>
+                
+                <div class="progress-bars">
+                  <div class="progress-bar" [ngClass]="{'active': userData.Mark >= 800}">
+                    <div class="bar-fill" [style.width.%]="userData.Mark >= 800 ? 1600 : 0"></div>
+                    <div class="bar-label">Excellent (800-1600)</div>
+                  </div>
+                  <div class="progress-bar" [ngClass]="{'active': userData.Mark >= 600 && userData.Mark < 800}">
+                    <div class="bar-fill" [style.width.%]="userData.Mark >= 600 && userData.Mark < 800 ? 1000 : 0"></div>
+                    <div class="bar-label">Good (600-790)</div>
+                  </div>
+                  <div class="progress-bar" [ngClass]="{'active': userData.Mark >= 400 && userData.Mark < 600}">
+                    <div class="bar-fill" [style.width.%]="userData.Mark >= 400 && userData.Mark < 600 ? 1000 : 0"></div>
+                    <div class="bar-label">Average (400-590)</div>
+                  </div>
+                  <div class="progress-bar" [ngClass]="{'active': userData.Mark < 400 && userData.Mark !== null}">
+                    <div class="bar-fill" [style.width.%]="userData.Mark < 400 && userData.Mark !== null ? 1000 : 0"></div>
+                    <div class="bar-label">Needs Improvement (0-390)</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="validation-message" *ngIf="userData.Mark && (userData.Mark < 0 || userData.Mark > 1000)">
+                <i class="error-icon">⚠️</i>
+                <span>Mark must be between 0 and 1600</span>
+              </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+              <div class="preview-header">
+                <i class="preview-icon">👁️</i>
+                <h3 class="preview-title">Student Preview</h3>
+              </div>
+              
+              <div class="preview-card" [ngClass]="{'empty': !userData.Name && !userData.Age && !userData.Mark}">
+                <div class="preview-avatar">
+                  {{ userData.Name?.charAt(0) || '?' }}
+                </div>
+                <div class="preview-content">
+                  <div class="preview-name">{{ userData.Name || 'New Student' }}</div>
+                  <div class="preview-details">
+                    <div class="preview-detail">
+                      <span class="detail-label">Age:</span>
+                      <span class="detail-value">{{ userData.Age || '--' }}</span>
+                    </div>
+                    <div class="preview-detail">
+                      <span class="detail-label">Mark:</span>
+                      <span class="detail-value">{{ userData.Mark || '--' }}</span>
+                    </div>
+                    <div class="preview-detail" *ngIf="userData.Mark">
+                      <span class="detail-label">Grade:</span>
+                      <span class="detail-value grade-{{ (userData.Mark) }}">
+                        {{ (userData.Mark) }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="preview-status" *ngIf="userData.Mark">
+                    <span class="status-badge" []="(userData.Mark)">
+                      {{ (userData.Mark) }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Form Footer -->
+          <div class="form-footer">
+            <div class="form-actions">
+              <button 
+                type="button" 
+                class="btn btn-reset"
+                [disabled]="!userData.Name && !userData.Age && !userData.Mark">
+                <i class="btn-icon">↺</i>
+                Clear All
+              </button>
+              
+              <div class="action-group">
+                <button 
+                  type="button" 
+                  routerLink="/Details All/" 
+                  class="btn btn-secondary">
+                  <i class="btn-icon">✕</i>
+                  Cancel
+                </button>
+                
+                <button 
+                  type="submit" 
+                  [disabled]="insertForm.invalid" 
+                  class="btn btn-primary"
+                  [ngClass]="{'disabled': insertForm.invalid}">
+                  <i class="btn-icon">💾</i>
+                  Save Student
+                  <span class="btn-subtext">Add to database</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-validation" *ngIf="insertForm.invalid && insertForm.touched">
+              <div class="validation-alert">
+                <i class="alert-icon">⚠️</i>
+                <div class="alert-content">
+                  <div class="alert-title">Please complete all required fields</div>
+                  <div class="alert-message">All fields marked with * are required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Side Information -->
+      <div class="side-panel">
+        <div class="info-card">
+          <div class="info-card-header">
+            <i class="info-icon">💡</i>
+            <h3 class="info-card-title">Tips for Adding Students</h3>
+          </div>
+          <div class="info-card-body">
+            <ul class="tips-list">
+              <li class="tip-item">
+                <i class="tip-icon">✅</i>
+                <div>
+                  <strong>Use full legal names</strong>
+                  - This ensures proper identification
+                </div>
+              </li>
+              <li class="tip-item">
+                <i class="tip-icon">✅</i>
+                <div>
+                  <strong>Verify age accuracy</strong>
+                  - Double-check before saving
+                </div>
+              </li>
+              <li class="tip-item">
+                <i class="tip-icon">✅</i>
+                <div>
+                  <strong>Enter marks as percentages</strong>
+                  - Use 0-1600 scale
+                </div>
+              </li>
+              <li class="tip-item">
+                <i class="tip-icon">📊</i>
+                <div>
+                  <strong>Performance guidelines:</strong>
+                  <div class="performance-guide">
+                    <span class="guide-item excellent">800+ = Excellent</span>
+                    <span class="guide-item good">600-790 = Good</span>
+                    <span class="guide-item average">400-590 = Average</span>
+                    <span class="guide-item poor">0-390 = Needs Help</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <i class="info-icon">⚡</i>
+            <h3 class="info-card-title">Quick Actions</h3>
+          </div>
+          <div class="info-card-body">
+            <div class="quick-actions">
+              <button class="quick-action-btn" >
+                <i class="action-icon">🎲</i>
+                <span>Fill Sample Data</span>
+              </button>
+              <button class="quick-action-btn" >
+                <i class="action-icon">📋</i>
+                <span>Paste from Clipboard</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card stats-card">
+          <div class="info-card-header">
+            <i class="info-icon">📈</i>
+            <h3 class="info-card-title">Statistics</h3>
+          </div>
+          <div class="info-card-body">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">245</div>
+                <div class="stat-label">Total Students</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Average Mark</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">22</div>
+                <div class="stat-label">Average Age</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>

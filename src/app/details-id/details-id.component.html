@@ -67,7 +67,7 @@
               </div>
               <div class="info-value">
                 <span class="value-large">{{ student.Mark }}</span>
-                <span class="value-unit">/ 100</span>
+                <span class="value-unit">/ 1600</span>
               </div>
             </div>
           </div>
@@ -76,17 +76,17 @@
           <div class="progress-section">
             <div class="progress-header">
               <span>Performance Score</span>
-              <span class="progress-percent">{{ (student.Mark / 100) * 100 }}%</span>
+              <span class="progress-percent">{{ (student.Mark / 1600) * 100 }}%</span>
             </div>
             <div class="progress-bar-container">
               <div 
                 class="progress-fill" 
-                [style.width.%]="(student.Mark / 100) * 100"
+                [style.width.%]="(student.Mark / 1600) * 100"
                 [ngClass]="{
-                  'excellent': student.Mark >= 80,
-                  'good': student.Mark >= 60 && student.Mark < 80,
-                  'average': student.Mark >= 40 && student.Mark < 60,
-                  'poor': student.Mark < 40
+                  'excellent': student.Mark >= 800,
+                  'good': student.Mark >= 600 && student.Mark < 800,
+                  'average': student.Mark >= 400 && student.Mark < 600,
+                  'poor': student.Mark < 400
                 }">
               </div>
             </div>
