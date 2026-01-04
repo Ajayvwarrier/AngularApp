@@ -10,6 +10,7 @@ import { InsertDBComponent } from './insert-db/insert-db.component';
 import { DisplayAllComponent } from './display-all/display-all.component';
 import { DetailsIdComponent } from './details-id/details-id.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
     InsertDBComponent,
     DisplayAllComponent,
     DetailsIdComponent,
-    EditDetailsComponent
+    EditDetailsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
